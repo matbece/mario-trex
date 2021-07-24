@@ -34,7 +34,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(windowWidth,windowHeigth);
+  createCanvas(windowWidth,windowHeight);
   
   trex = createSprite(50,height-70,20,50)
   
@@ -42,7 +42,7 @@ function setup() {
   trex.addAnimation("collided", trex_collided);
   trex.scale = 0.1;
   
-  ground = createSprite(width/2,height,width,2);
+  ground = createSprite(width/2,height-30,width,2);
   ground.addImage("ground",groundImage);
   ground.x = ground.width /2;
   ground.velocityX = -(6 + 3*score/100);
@@ -59,7 +59,7 @@ function setup() {
   gameOver.visible = false;
   restart.visible = false;
   
-  invisibleGround = createSprite(width/2,height-10,width,125);
+  invisibleGround = createSprite(width/2,height-10,width,2);
   invisibleGround.visible = false;
   
   cloudsGroup = new Group();
@@ -77,7 +77,7 @@ function draw() {
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
   
-    if(touches.length>0||keyDown("space") && trex.y >= height-120) {
+    if(touches.length>0||keyDown("space") && trex.y >= height-80) {
       trex.velocityY = -12;
     touches =[]
     }
@@ -148,7 +148,7 @@ function spawnClouds() {
 
 function spawnObstacles() {
   if(frameCount % 60 === 0) {
-    var obstacle = createSprite(width,height-95,10,40);
+    var obstacle = createSprite(width,height-25,10,40);
     //obstacle.debug = true;
     obstacle.velocityX = -(6 + 3*score/100);
     
